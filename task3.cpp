@@ -3,18 +3,14 @@
 
 using namespace cv;
 using namespace std;
-
 int main()
 {
 
     Mat input;
-   
     string k = "";
-
     int y = 1;
 
     while (1) {
-
         if (y == 7)
             return 0;
         k = to_string(y);
@@ -22,19 +18,9 @@ int main()
         if (input.empty()) {
             continue;
         }
-        Mat gray;
-        Mat vv1,vv;
-        Mat input1 = input.clone();
-        
-        cvtColor(input, gray, COLOR_BGR2GRAY);
-        medianBlur(gray, vv1, 3);
-        Mat binary;
         Mat inrange;
         inRange(input,Scalar(42,82,87), Scalar(255,255,255), inrange);
         imshow("usingInrange", inrange);
-        waitKey(0);
-        threshold(vv1, binary, 76, 255, THRESH_BINARY);
-        imshow("thersh", binary);
         waitKey(0);
         vector<vector<Point>> contours;
         findContours(inrange, contours, RETR_TREE, CHAIN_APPROX_SIMPLE);
